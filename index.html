@@ -12,12 +12,12 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  font-family: 'Segoe UI', sans-serif;
+  font-family:'Segoe UI',sans-serif;
   background:url("night.jpg") center/cover no-repeat fixed;
   overflow:hidden;
 }
 
-/* START SCREEN */
+/* START */
 #start{
   position:fixed;
   inset:0;
@@ -27,7 +27,6 @@ body{
   align-items:center;
   z-index:10;
 }
-
 #start button{
   font-size:24px;
   padding:18px 40px;
@@ -42,59 +41,79 @@ body{
   position:relative;
   background:rgba(255,255,255,0.9);
   border-radius:30px;
-  padding:30px 40px 150px;
+  padding:40px 50px 170px;
   text-align:center;
 }
 
 /* TEXT */
 h1{
-  margin:0 0 20px;
+  margin:0 0 35px;
 }
 
 /* CAKE */
 .cake{
-  width:200px;
-  height:120px;
+  width:220px;
+  height:130px;
   background:#f6b1c3;
-  border-radius:20px;
+  border-radius:22px;
   position:relative;
   margin:auto;
-  box-shadow:0 10px 20px rgba(0,0,0,0.3);
+  box-shadow:0 12px 25px rgba(0,0,0,0.3);
 }
 
+/* TOP ICING */
 .cake::before{
   content:"";
   position:absolute;
-  top:-20px;
+  top:-22px;
   left:0;
   width:100%;
-  height:30px;
+  height:32px;
   background:#ffd6e0;
-  border-radius:20px 20px 10px 10px;
+  border-radius:22px 22px 14px 14px;
 }
 
+/* SPRINKLES */
+.sprinkle{
+  position:absolute;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+}
+.s1{top:10px; left:30px; background:#ff6f91}
+.s2{top:18px; left:80px; background:#ffc75f}
+.s3{top:12px; left:130px; background:#845ec2}
+.s4{top:20px; left:170px; background:#4d96ff}
+.s5{top:8px; left:105px; background:#00c9a7}
+
+/* NAME */
 .name{
   position:absolute;
-  bottom:35px;
+  bottom:30px;
   width:100%;
   text-align:center;
-  font-family:cursive;
+  font-family:'Comic Sans MS', cursive;
   font-size:24px;
 }
 
-/* CANDLES */
-.candle{
-  width:10px;
-  height:35px;
-  background:white;
+/* CANDLES WRAPPER */
+.candles{
   position:absolute;
-  top:-35px;
+  top:-55px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:30px;
 }
 
-.candle:nth-child(1){left:50px}
-.candle:nth-child(2){left:95px}
-.candle:nth-child(3){left:140px}
-
+/* CANDLE */
+.candle{
+  width:10px;
+  height:38px;
+  background:white;
+  position:relative;
+  border-radius:3px;
+}
 .flame{
   width:12px;
   height:12px;
@@ -105,38 +124,29 @@ h1{
   left:-1px;
   animation:flicker .15s infinite alternate;
 }
-
 @keyframes flicker{
   from{transform:scale(1)}
-  to{transform:scale(1.2)}
+  to{transform:scale(1.25)}
 }
 
 /* CALENDAR */
 .calendar{
   position:absolute;
-  right:-140px;
-  top:40px;
-  width:130px;
+  right:-145px;
+  top:60px;
+  width:135px;
   background:white;
-  border-radius:15px;
+  border-radius:16px;
   padding:10px;
   font-size:12px;
 }
-
-.calendar h3{
-  margin:5px 0;
-}
-
+.calendar h3{margin:5px 0}
 .days{
   display:grid;
   grid-template-columns:repeat(7,1fr);
   gap:3px;
 }
-
-.day{
-  padding:4px;
-}
-
+.day{padding:4px}
 .mark{
   background:pink;
   border-radius:50%;
@@ -145,13 +155,12 @@ h1{
 /* PHOTOS */
 .photos{
   position:absolute;
-  bottom:20px;
+  bottom:25px;
   left:50%;
   transform:translateX(-50%);
   display:flex;
   gap:12px;
 }
-
 .photos img{
   width:65px;
   height:85px;
@@ -165,10 +174,8 @@ h1{
   position:fixed;
   width:8px;
   height:8px;
-  background:red;
   animation:fall 2s linear forwards;
 }
-
 @keyframes fall{
   to{transform:translateY(100vh) rotate(360deg)}
 }
@@ -185,11 +192,20 @@ h1{
   <h1>Happy Birthday Aaria 🤍</h1>
 
   <div class="cake">
-    <div class="name">Aaria</div>
+    <!-- sprinkles -->
+    <div class="sprinkle s1"></div>
+    <div class="sprinkle s2"></div>
+    <div class="sprinkle s3"></div>
+    <div class="sprinkle s4"></div>
+    <div class="sprinkle s5"></div>
 
-    <div class="candle"><div class="flame"></div></div>
-    <div class="candle"><div class="flame"></div></div>
-    <div class="candle"><div class="flame"></div></div>
+    <div class="candles">
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+    </div>
+
+    <div class="name">Aaria</div>
   </div>
 
   <div class="calendar">
@@ -222,9 +238,8 @@ function start(){
   document.getElementById("main").style.display="block";
   document.getElementById("music").play();
 }
-
 function confetti(){
-  for(let i=0;i<30;i++){
+  for(let i=0;i<25;i++){
     let c=document.createElement("div");
     c.className="confetti";
     c.style.left=Math.random()*100+"vw";
