@@ -1,126 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Happy Birthday Aaria 💜</title>
+<meta charset="UTF-8">
+<title>Happy Birthday Aaria 💜</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+<style>
+body{
+  margin:0;
+  font-family:Poppins, sans-serif;
+  background:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
 
-    .container {
-      display: flex;
-      align-items: center;
-      gap: 60px;
-      flex-wrap: wrap;
-      text-align: center;
-    }
+.container{
+  display:flex;
+  gap:60px;
+  align-items:center;
+  flex-wrap:wrap;
+  text-align:center;
+}
 
-    h1 {
-      margin-bottom: 20px;
-      font-weight: 500;
-    }
+h1{font-weight:500}
 
-    /* 🎂 Cake */
-    .cake {
-      width: 260px;
-      height: 140px;
-      background: linear-gradient(#e7c29b, #d6a97b);
-      border-radius: 70px;
-      position: relative;
-      box-shadow: 0 25px 40px rgba(0,0,0,0.15);
-    }
+/* 🎂 Cake */
+.cake{
+  width:260px;
+  height:140px;
+  background:linear-gradient(#e7c29b,#d6a97b);
+  border-radius:70px;
+  position:relative;
+  box-shadow:0 25px 40px rgba(0,0,0,.15);
+}
 
-    .icing {
-      position: absolute;
-      top: -30px;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background: #ffffff;
-      border-radius: 60px;
-    }
+.icing{
+  position:absolute;
+  top:-30px;
+  width:100%;
+  height:60px;
+  background:white;
+  border-radius:60px;
+}
 
-    .drip {
-      position: absolute;
-      bottom: -20px;
-      width: 22px;
-      height: 30px;
-      background: white;
-      border-radius: 0 0 20px 20px;
-    }
+.drip{
+  position:absolute;
+  bottom:-20px;
+  width:22px;
+  height:30px;
+  background:white;
+  border-radius:0 0 20px 20px;
+}
+.drip:nth-child(1){left:40px}
+.drip:nth-child(2){left:90px;height:40px}
+.drip:nth-child(3){left:140px}
+.drip:nth-child(4){left:190px;height:35px}
 
-    .drip:nth-child(1) { left: 40px; }
-    .drip:nth-child(2) { left: 90px; height: 40px; }
-    .drip:nth-child(3) { left: 140px; }
-    .drip:nth-child(4) { left: 190px; height: 35px; }
+/* 🕯️ Candles */
+.candle{
+  position:absolute;
+  top:-55px;
+  width:10px;
+  height:35px;
+  background:#ff9aa2;
+  border-radius:4px;
+}
+.candle::after{
+  content:"";
+  position:absolute;
+  top:-12px;
+  left:-3px;
+  width:16px;
+  height:16px;
+  background:radial-gradient(circle,#ffd966,#ff9800);
+  border-radius:50%;
+}
+.c1{left:90px}
+.c2{left:125px}
+.c3{left:160px}
 
-    /* 📅 Calendar */
-    .calendar {
-      width: 140px;
-      border-radius: 18px;
-      box-shadow: 0 20px 35px rgba(0,0,0,0.15);
-      overflow: hidden;
-    }
+/* ✍️ Name */
+.name{
+  position:absolute;
+  top:55px;
+  width:100%;
+  font-size:18px;
+  font-weight:500;
+  color:#7c5cff;
+}
 
-    .calendar .top {
-      background: #7c5cff;
-      color: white;
-      padding: 10px;
-      font-size: 14px;
-    }
+/* 📅 Calendar */
+.calendar{
+  width:140px;
+  border-radius:18px;
+  box-shadow:0 20px 35px rgba(0,0,0,.15);
+  overflow:hidden;
+}
+.calendar .top{
+  background:#7c5cff;
+  color:white;
+  padding:10px;
+}
+.calendar .date{
+  padding:25px;
+  font-size:28px;
+  font-weight:600;
+  color:#7c5cff;
+}
 
-    .calendar .date {
-      background: white;
-      padding: 25px 10px;
-      font-size: 28px;
-      font-weight: 600;
-      color: #7c5cff;
-    }
+/* 🎉 Confetti */
+.confetti{
+  position:fixed;
+  width:8px;
+  height:8px;
+  background:red;
+  top:-10px;
+  animation:fall 2.5s linear forwards;
+}
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+    opacity:0;
+  }
+}
 
-    /* Mobile */
-    @media (max-width: 700px) {
-      .container {
-        flex-direction: column;
-        gap: 30px;
-      }
-    }
-  </style>
+@media(max-width:700px){
+  .container{flex-direction:column;gap:30px}
+}
+</style>
 </head>
 
-<body>
+<body onclick="confetti()">
 
-  <audio autoplay loop>
-    <source src="futile-devices.mp3" type="audio/mpeg">
-  </audio>
+<audio autoplay loop>
+  <source src="futile-devices.mp3" type="audio/mpeg">
+</audio>
 
-  <div class="container">
-    <div>
-      <h1>Happy Birthday Aaria 💜</h1>
+<div class="container">
+  <div>
+    <h1>Happy Birthday Aaria 💜</h1>
 
-      <div class="cake">
-        <div class="icing">
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-        </div>
+    <div class="cake">
+      <div class="icing">
+        <div class="drip"></div>
+        <div class="drip"></div>
+        <div class="drip"></div>
+        <div class="drip"></div>
       </div>
-    </div>
 
-    <div class="calendar">
-      <div class="top">February</div>
-      <div class="date">8teen</div>
+      <div class="candle c1"></div>
+      <div class="candle c2"></div>
+      <div class="candle c3"></div>
+
+      <div class="name">Aaria</div>
     </div>
   </div>
 
+  <div class="calendar">
+    <div class="top">February</div>
+    <div class="date">8teen</div>
+  </div>
+</div>
+
+<script>
+function confetti(){
+  for(let i=0;i<40;i++){
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.background=`hsl(${Math.random()*360},100%,60%)`;
+    c.style.animationDuration=2+Math.random()*2+"s";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }
+}
+</script>
+
 </body>
 </html>
+
 
