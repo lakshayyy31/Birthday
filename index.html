@@ -12,39 +12,41 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-
-  /* 🌌 BACKGROUND IMAGE */
   background: url("night.jpg") center/cover no-repeat fixed;
 }
 
-/* Start screen */
+/* START SCREEN */
 #startScreen{
-  text-align:center;
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: rgba(0,0,0,0.45);
+  z-index:10;
 }
+
 #startBtn{
-  padding:16px 32px;
+  padding:18px 36px;
   font-size:18px;
   border:none;
-  border-radius:30px;
+  border-radius:40px;
   background:#f1b2a2;
   color:white;
   cursor:pointer;
 }
 
-/* Main layout */
+/* MAIN CONTENT (hidden initially) */
 #content{
   display:none;
-  display:flex;
   align-items:center;
   gap:60px;
-
-  /* readable overlay */
   background: rgba(255,255,255,0.85);
   padding:40px;
   border-radius:30px;
 }
 
-/* Text */
+/* Text block */
 .text-block{
   text-align:center;
 }
@@ -87,7 +89,7 @@ h1{
 .c2{left:125px}
 .c3{left:155px}
 
-/* Name on cake */
+/* Name */
 .name{
   position:absolute;
   top:80px;
@@ -96,7 +98,7 @@ h1{
   font-weight:500;
 }
 
-/* 📅 Calendar (RIGHT) */
+/* 📅 Calendar */
 .calendar{
   width:210px;
   border-radius:18px;
@@ -157,10 +159,12 @@ h1{
 
 <body onclick="confettiBurst()">
 
+<!-- START SCREEN -->
 <div id="startScreen">
   <button id="startBtn">Tap to start 🎵</button>
 </div>
 
+<!-- MAIN CONTENT -->
 <div id="content">
   <div class="text-block">
     <h1>Happy Birthday Aaria 🤍</h1>
@@ -207,6 +211,7 @@ startBtn.onclick = () => {
 };
 
 function confettiBurst(){
+  if(content.style.display!=="flex") return;
   for(let i=0;i<40;i++){
     const c=document.createElement("div");
     c.className="confetti";
@@ -221,7 +226,6 @@ function confettiBurst(){
 
 </body>
 </html>
-
 
 
 
