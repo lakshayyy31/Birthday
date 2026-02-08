@@ -41,7 +41,7 @@ body{
   position:relative;
   background:rgba(255,255,255,0.9);
   border-radius:30px;
-  padding:60px 55px 180px;
+  padding:60px 55px 220px;
   width:340px;
   text-align:center;
 }
@@ -127,7 +127,7 @@ h1{
   transform:translateX(-50%);
   display:flex;
   gap:32px;
-  pointer-events:none; /* so clicking cake works anywhere */
+  pointer-events:none;
 }
 .candle{
   width:10px;
@@ -205,7 +205,7 @@ h1{
   transform:scale(1.1);
 }
 
-/* FULLSCREEN POPUP */
+/* FULLSCREEN PHOTO POPUP */
 #popup{
   position:fixed;
   inset:0;
@@ -233,6 +233,78 @@ h1{
 @keyframes fall{
   to{transform:translateY(100vh) rotate(360deg)}
 }
+
+/* ENVELOPE BUTTON */
+#envelopeBtn{
+  position:absolute;
+  top:20px;
+  left:20px;
+  width:55px;
+  height:40px;
+  background:#fff;
+  border-radius:10px;
+  border:2px solid #ff8fab;
+  cursor:pointer;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.2);
+  transition:0.2s;
+}
+#envelopeBtn:hover{
+  transform:scale(1.08);
+}
+
+/* PLAYLIST POPUP */
+#playlistPopup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:60;
+}
+
+.popupBox{
+  width:300px;
+  background:white;
+  border-radius:20px;
+  padding:25px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.popupBox h2{
+  margin:0;
+  font-size:20px;
+}
+
+.popupBox p{
+  font-size:14px;
+  color:#555;
+  margin-top:10px;
+}
+
+.popupBox a{
+  display:inline-block;
+  margin-top:18px;
+  padding:12px 18px;
+  border-radius:25px;
+  background:#ff4d6d;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.closeBtn{
+  margin-top:15px;
+  display:block;
+  font-size:13px;
+  color:#777;
+  cursor:pointer;
+}
 </style>
 </head>
 
@@ -242,12 +314,31 @@ h1{
   <button onclick="start()">Tap to Start 🎶</button>
 </div>
 
-<!-- IMAGE POPUP -->
+<!-- PHOTO POPUP -->
 <div id="popup" onclick="closePopup()">
   <img id="popupImg" src="">
 </div>
 
+<!-- PLAYLIST POPUP -->
+<div id="playlistPopup" onclick="closePlaylistPopup()">
+  <div class="popupBox" onclick="event.stopPropagation()">
+    <h2>For You 💌🎶</h2>
+    <p>I made a playlist for you...  
+    hope you like it 🤍</p>
+
+    <a href="https://open.spotify.com/playlist/06Aj93NfdzlxVX8Sw1dlXK?si=6dc41f335ee44b1c&pt=f33258345be67b723ba7c4197d771aff" target="_blank">
+      Open Playlist 🎧
+    </a>
+
+    <span class="closeBtn" onclick="closePlaylistPopup()">Close</span>
+  </div>
+</div>
+
 <div id="main" onclick="confetti()">
+
+  <!-- Envelope button -->
+  <div id="envelopeBtn" onclick="openPlaylistPopup(event)">💌</div>
+
   <h1>Happy Birthday Aaria 🤍</h1>
 
   <div class="cake" id="cake">
@@ -315,7 +406,7 @@ function confetti(){
 }
 
 function openPopup(src){
-  event.stopPropagation(); 
+  event.stopPropagation();
   document.getElementById("popup").style.display="flex";
   document.getElementById("popupImg").src = src;
 }
@@ -324,13 +415,23 @@ function closePopup(){
   document.getElementById("popup").style.display="none";
 }
 
-/* BLOW CANDLES (tap cake) */
+/* PLAYLIST POPUP */
+function openPlaylistPopup(e){
+  e.stopPropagation();
+  document.getElementById("playlistPopup").style.display="flex";
+}
+
+function closePlaylistPopup(){
+  document.getElementById("playlistPopup").style.display="none";
+}
+
+/* BLOW CANDLES */
 const cakeEl = document.getElementById("cake");
 const wishMsg = document.getElementById("wishMsg");
 let candlesOut = false;
 
 cakeEl.addEventListener("click", (e) => {
-  e.stopPropagation(); 
+  e.stopPropagation();
   candlesOut = !candlesOut;
 
   document.querySelectorAll(".flame").forEach(flame => {
@@ -343,6 +444,7 @@ cakeEl.addEventListener("click", (e) => {
 
 </body>
 </html>
+
 
 
 
