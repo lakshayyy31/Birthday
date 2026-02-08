@@ -7,7 +7,7 @@
 <style>
 body{
   margin:0;
-  height:100vh;
+  min-height:100vh;
   background:#ffffff;
   font-family:Arial, sans-serif;
   display:flex;
@@ -29,32 +29,39 @@ body{
   cursor:pointer;
 }
 
-/* Main content */
+/* Layout */
 #content{
   display:none;
+  display:flex;
+  align-items:center;
+  gap:60px;
+}
+
+/* Text */
+.text-block{
   text-align:center;
 }
 
 h1{
-  margin-bottom:70px; /* pushed UP so no collision */
+  margin-bottom:100px; /* PUSHED UP – no collision possible */
   font-weight:500;
 }
 
-/* 🎂 Cake (NO frosting now) */
+/* 🎂 Cake (NO FROSTING AT ALL) */
 .cake{
   width:260px;
-  height:160px;
+  height:170px;
   background:linear-gradient(#f7c6b7,#f1b2a2);
-  border-radius:80px;
+  border-radius:85px;
   position:relative;
   margin:0 auto;
   box-shadow:0 25px 40px rgba(0,0,0,.15);
 }
 
-/* Candles */
+/* Candles – lowered */
 .candle{
   position:absolute;
-  top:-45px; /* lowered */
+  top:-35px; /* safely below text */
   width:10px;
   height:35px;
   background:#ffd1dc;
@@ -74,44 +81,49 @@ h1{
 .c2{left:125px}
 .c3{left:155px}
 
-/* Name */
+/* Name on cake */
 .name{
   position:absolute;
-  top:65px;
+  top:75px;
   width:100%;
   color:white;
   font-weight:500;
 }
 
-/* 📅 Calendar */
+/* 📅 Calendar (RIGHT SIDE) */
 .calendar{
-  margin-top:40px;
-  width:200px;
+  width:210px;
   border-radius:18px;
   overflow:hidden;
   box-shadow:0 20px 35px rgba(0,0,0,.15);
 }
+
 .cal-top{
   background:#f1b2a2;
   color:white;
-  padding:10px;
+  padding:12px;
   font-weight:600;
+  text-align:center;
 }
+
 .grid{
   display:grid;
   grid-template-columns:repeat(7,1fr);
   gap:6px;
   padding:12px;
   font-size:13px;
+  text-align:center;
 }
+
 .day{opacity:.5}
 .date{
   padding:6px;
   border-radius:50%;
 }
+
+/* 26 FEB CIRCLED */
 .mark{
-  background:#f1b2a2;
-  color:white;
+  border:2px solid #f1b2a2;
   font-weight:600;
 }
 
@@ -131,8 +143,13 @@ h1{
   }
 }
 
-@media(max-width:700px){
-  h1{margin-bottom:60px}
+/* Mobile */
+@media(max-width:800px){
+  #content{
+    flex-direction:column;
+    gap:40px;
+  }
+  h1{margin-bottom:80px}
 }
 </style>
 </head>
@@ -144,17 +161,19 @@ h1{
 </div>
 
 <div id="content">
-  <h1>Happy Birthday Aaria 🤍</h1>
+  <div class="text-block">
+    <h1>Happy Birthday Aaria 🤍</h1>
 
-  <div class="cake">
-    <div class="candle c1"></div>
-    <div class="candle c2"></div>
-    <div class="candle c3"></div>
-    <div class="name">Aaria</div>
+    <div class="cake">
+      <div class="candle c1"></div>
+      <div class="candle c2"></div>
+      <div class="candle c3"></div>
+      <div class="name">Aaria</div>
+    </div>
   </div>
 
   <div class="calendar">
-    <div class="cal-top">8teen</div>
+    <div class="cal-top">February · 8teen</div>
     <div class="grid">
       <div class="day">S</div><div class="day">M</div><div class="day">T</div>
       <div class="day">W</div><div class="day">T</div><div class="day">F</div><div class="day">S</div>
@@ -183,7 +202,7 @@ const content = document.getElementById("content");
 startBtn.onclick = () => {
   music.play();
   startScreen.style.display="none";
-  content.style.display="block";
+  content.style.display="flex";
 };
 
 function confettiBurst(){
@@ -201,6 +220,7 @@ function confettiBurst(){
 
 </body>
 </html>
+
 
 
 
