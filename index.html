@@ -7,25 +7,36 @@
 <style>
 body{
   margin:0;
-  font-family:Poppins, sans-serif;
-  background:#fff;
+  height:100vh;
+  background:#ffffff;
+  font-family:Arial, sans-serif;
   display:flex;
   justify-content:center;
   align-items:center;
-  min-height:100vh;
 }
 
-.container{
-  display:flex;
-  gap:60px;
-  align-items:center;
-  flex-wrap:wrap;
+#startScreen{
+  text-align:center;
+}
+
+#startBtn{
+  padding:16px 32px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  background:#f1b2a2;
+  color:white;
+  cursor:pointer;
+}
+
+#content{
+  display:none;
   text-align:center;
 }
 
 h1{
-  font-weight:500;
   margin-bottom:40px;
+  font-weight:500;
 }
 
 /* 🎂 Cake */
@@ -35,6 +46,7 @@ h1{
   background:linear-gradient(#f7c6b7,#f1b2a2);
   border-radius:70px;
   position:relative;
+  margin:0 auto;
   box-shadow:0 25px 40px rgba(0,0,0,.15);
 }
 
@@ -60,7 +72,7 @@ h1{
 .drip:nth-child(3){left:140px}
 .drip:nth-child(4){left:190px;height:35px}
 
-/* 🕯️ Candles */
+/* Candles */
 .candle{
   position:absolute;
   top:-55px;
@@ -79,36 +91,36 @@ h1{
   background:radial-gradient(circle,#fff6c7,#ffb703);
   border-radius:50%;
 }
-.c1{left:90px}
+.c1{left:95px}
 .c2{left:125px}
-.c3{left:160px}
+.c3{left:155px}
 
-/* ✍️ Name */
+/* Name */
 .name{
   position:absolute;
   top:55px;
   width:100%;
-  font-size:18px;
+  color:white;
   font-weight:500;
-  color:#ffffff;
 }
 
 /* 📅 Calendar */
 .calendar{
-  width:180px;
+  margin-top:40px;
+  width:200px;
   border-radius:18px;
-  box-shadow:0 20px 35px rgba(0,0,0,.15);
   overflow:hidden;
+  box-shadow:0 20px 35px rgba(0,0,0,.15);
 }
 
-.calendar .top{
+.cal-top{
   background:#f1b2a2;
   color:white;
   padding:10px;
   font-weight:600;
 }
 
-.calendar .grid{
+.grid{
   display:grid;
   grid-template-columns:repeat(7,1fr);
   gap:6px;
@@ -116,28 +128,18 @@ h1{
   font-size:13px;
 }
 
-.day{
-  opacity:.5;
-}
-
-.date{
-  padding:6px 0;
-  border-radius:50%;
-}
-
-.mark{
-  border:2px solid #f1b2a2;
-  font-weight:600;
-}
+.day{opacity:.5}
+.date{padding:6px;border-radius:50%}
+.mark{border:2px solid #f1b2a2;font-weight:600}
 
 /* 🎉 Confetti */
 .confetti{
   position:fixed;
   width:8px;
   height:8px;
-  background:red;
   top:-10px;
-  animation:fall 2.5s linear forwards;
+  animation:fall linear forwards;
+  z-index:9999;
 }
 @keyframes fall{
   to{
@@ -147,45 +149,43 @@ h1{
 }
 
 @media(max-width:700px){
-  .container{flex-direction:column;gap:30px}
+  h1{margin-bottom:30px}
 }
 </style>
 </head>
 
-<body onclick="confetti()">
+<body>
 
-<audio autoplay loop>
-  <source src="futile-devices.mp3" type="audio/mpeg">
-</audio>
+<div id="startScreen">
+  <button id="startBtn">Tap to start 🎵</button>
+</div>
 
-<div class="container">
-  <div>
-    <h1>Happy Birthday Aaria 🤍</h1>
+<div id="content" onclick="confettiBurst()">
+  <h1>Happy Birthday Aaria 🤍</h1>
 
-    <div class="cake">
-      <div class="icing">
-        <div class="drip"></div>
-        <div class="drip"></div>
-        <div class="drip"></div>
-        <div class="drip"></div>
-      </div>
-
-      <div class="candle c1"></div>
-      <div class="candle c2"></div>
-      <div class="candle c3"></div>
-
-      <div class="name">Aaria</div>
+  <div class="cake">
+    <div class="icing">
+      <div class="drip"></div>
+      <div class="drip"></div>
+      <div class="drip"></div>
+      <div class="drip"></div>
     </div>
+
+    <div class="candle c1"></div>
+    <div class="candle c2"></div>
+    <div class="candle c3"></div>
+
+    <div class="name">Aaria</div>
   </div>
 
   <div class="calendar">
-    <div class="top">8teen</div>
+    <div class="cal-top">8teen</div>
     <div class="grid">
       <div class="day">S</div><div class="day">M</div><div class="day">T</div>
       <div class="day">W</div><div class="day">T</div><div class="day">F</div><div class="day">S</div>
 
-      <!-- Feb dates -->
-      <div></div><div></div><div class="date">1</div><div class="date">2</div><div class="date">3</div><div class="date">4</div><div class="date">5</div>
+      <div></div><div></div>
+      <div class="date">1</div><div class="date">2</div><div class="date">3</div><div class="date">4</div><div class="date">5</div>
       <div class="date">6</div><div class="date">7</div><div class="date">8</div><div class="date">9</div><div class="date">10</div><div class="date">11</div><div class="date">12</div>
       <div class="date">13</div><div class="date">14</div><div class="date">15</div><div class="date">16</div><div class="date">17</div><div class="date">18</div><div class="date">19</div>
       <div class="date">20</div><div class="date">21</div><div class="date">22</div><div class="date">23</div><div class="date">24</div><div class="date">25</div><div class="date mark">26</div>
@@ -194,22 +194,38 @@ h1{
   </div>
 </div>
 
+<audio id="music" loop>
+  <source src="futile-devices.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-function confetti(){
+const music = document.getElementById("music");
+const startBtn = document.getElementById("startBtn");
+const startScreen = document.getElementById("startScreen");
+const content = document.getElementById("content");
+
+startBtn.onclick = () => {
+  music.play();
+  startScreen.style.display="none";
+  content.style.display="block";
+};
+
+function confettiBurst(){
   for(let i=0;i<40;i++){
-    let c=document.createElement("div");
+    const c=document.createElement("div");
     c.className="confetti";
     c.style.left=Math.random()*100+"vw";
     c.style.background=`hsl(${Math.random()*360},100%,60%)`;
     c.style.animationDuration=2+Math.random()*2+"s";
     document.body.appendChild(c);
-    setTimeout(()=>c.remove(),3000);
+    setTimeout(()=>c.remove(),4000);
   }
 }
 </script>
 
 </body>
 </html>
+
 
 
 
