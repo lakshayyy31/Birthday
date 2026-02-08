@@ -25,7 +25,6 @@ body{
   background: rgba(0,0,0,0.45);
   z-index:10;
 }
-
 #startBtn{
   padding:18px 36px;
   font-size:18px;
@@ -36,27 +35,28 @@ body{
   cursor:pointer;
 }
 
-/* MAIN CONTENT (hidden initially) */
+/* MAIN CONTENT */
 #content{
   display:none;
-  align-items:center;
-  gap:60px;
+  flex-direction:column;
+  gap:40px;
   background: rgba(255,255,255,0.85);
   padding:40px;
   border-radius:30px;
 }
 
-/* Text block */
-.text-block{
-  text-align:center;
+/* TOP ROW */
+.top{
+  display:flex;
+  gap:60px;
+  align-items:center;
 }
 
-h1{
-  margin-bottom:100px;
-  font-weight:500;
-}
+/* TEXT */
+.text-block{text-align:center;}
+h1{margin-bottom:100px;font-weight:500;}
 
-/* 🎂 Cake */
+/* 🎂 CAKE */
 .cake2{
   width:260px;
   height:180px;
@@ -121,16 +121,42 @@ h1{
   text-align:center;
 }
 .day{opacity:.5}
-.date{
-  padding:6px;
-  border-radius:50%;
+.date{padding:6px;border-radius:50%;}
+.mark{border:3px solid #f1b2a2;font-weight:600;}
+
+/* 📸 PHOTOS */
+.photos{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
 }
-.mark{
-  border:3px solid #f1b2a2;
-  font-weight:600;
+.photos img{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius:18px;
+  cursor:pointer;
+  transition:.3s;
+}
+.photos img:hover{transform:scale(1.05);}
+
+/* FULLSCREEN VIEW */
+#viewer{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:20;
+}
+#viewer img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:20px;
 }
 
-/* 🎉 Confetti */
+/* 🎉 CONFETTI */
 .confetti{
   position:fixed;
   width:8px;
@@ -140,18 +166,13 @@ h1{
   z-index:9999;
 }
 @keyframes fall{
-  to{
-    transform:translateY(110vh) rotate(360deg);
-    opacity:0;
-  }
+  to{transform:translateY(110vh) rotate(360deg);opacity:0;}
 }
 
-/* Mobile */
+/* MOBILE */
 @media(max-width:800px){
-  #content{
-    flex-direction:column;
-    gap:40px;
-  }
+  .top{flex-direction:column;gap:40px}
+  .photos{grid-template-columns:repeat(2,1fr)}
   h1{margin-bottom:80px}
 }
 </style>
@@ -159,39 +180,52 @@ h1{
 
 <body onclick="confettiBurst()">
 
-<!-- START SCREEN -->
+<!-- START -->
 <div id="startScreen">
   <button id="startBtn">Tap to start 🎵</button>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN -->
 <div id="content">
-  <div class="text-block">
-    <h1>Happy Birthday Aaria 🤍</h1>
+  <div class="top">
+    <div class="text-block">
+      <h1>Happy Birthday Aaria 🤍</h1>
+      <div class="cake2">
+        <div class="candle2 c1"></div>
+        <div class="candle2 c2"></div>
+        <div class="candle2 c3"></div>
+        <div class="name">Aaria</div>
+      </div>
+    </div>
 
-    <div class="cake2">
-      <div class="candle2 c1"></div>
-      <div class="candle2 c2"></div>
-      <div class="candle2 c3"></div>
-      <div class="name">Aaria</div>
+    <div class="calendar">
+      <div class="cal-top">February · 8teen</div>
+      <div class="grid">
+        <div class="day">S</div><div class="day">M</div><div class="day">T</div>
+        <div class="day">W</div><div class="day">T</div><div class="day">F</div><div class="day">S</div>
+        <div></div><div></div>
+        <div class="date">1</div><div class="date">2</div><div class="date">3</div><div class="date">4</div><div class="date">5</div>
+        <div class="date">6</div><div class="date">7</div><div class="date">8</div><div class="date">9</div><div class="date">10</div><div class="date">11</div><div class="date">12</div>
+        <div class="date">13</div><div class="date">14</div><div class="date">15</div><div class="date">16</div><div class="date">17</div><div class="date">18</div><div class="date">19</div>
+        <div class="date">20</div><div class="date">21</div><div class="date">22</div><div class="date">23</div><div class="date">24</div><div class="date">25</div>
+        <div class="date mark">26</div>
+        <div class="date">27</div><div class="date">28</div>
+      </div>
     </div>
   </div>
 
-  <div class="calendar">
-    <div class="cal-top">February · 8teen</div>
-    <div class="grid">
-      <div class="day">S</div><div class="day">M</div><div class="day">T</div>
-      <div class="day">W</div><div class="day">T</div><div class="day">F</div><div class="day">S</div>
-
-      <div></div><div></div>
-      <div class="date">1</div><div class="date">2</div><div class="date">3</div><div class="date">4</div><div class="date">5</div>
-      <div class="date">6</div><div class="date">7</div><div class="date">8</div><div class="date">9</div><div class="date">10</div><div class="date">11</div><div class="date">12</div>
-      <div class="date">13</div><div class="date">14</div><div class="date">15</div><div class="date">16</div><div class="date">17</div><div class="date">18</div><div class="date">19</div>
-      <div class="date">20</div><div class="date">21</div><div class="date">22</div><div class="date">23</div><div class="date">24</div><div class="date">25</div>
-      <div class="date mark">26</div>
-      <div class="date">27</div><div class="date">28</div>
-    </div>
+  <!-- PHOTOS -->
+  <div class="photos">
+    <img src="a1.png" onclick="openImg(this.src)">
+    <img src="a2.png" onclick="openImg(this.src)">
+    <img src="a3.png" onclick="openImg(this.src)">
+    <img src="a4.png" onclick="openImg(this.src)">
   </div>
+</div>
+
+<!-- IMAGE VIEWER -->
+<div id="viewer" onclick="this.style.display='none'">
+  <img id="viewImg">
 </div>
 
 <audio id="music" loop>
@@ -199,12 +233,12 @@ h1{
 </audio>
 
 <script>
-const music = document.getElementById("music");
-const startBtn = document.getElementById("startBtn");
-const startScreen = document.getElementById("startScreen");
-const content = document.getElementById("content");
+const music=document.getElementById("music");
+const startBtn=document.getElementById("startBtn");
+const startScreen=document.getElementById("startScreen");
+const content=document.getElementById("content");
 
-startBtn.onclick = () => {
+startBtn.onclick=()=>{
   music.play();
   startScreen.style.display="none";
   content.style.display="flex";
@@ -222,10 +256,16 @@ function confettiBurst(){
     setTimeout(()=>c.remove(),4000);
   }
 }
+
+function openImg(src){
+  document.getElementById("viewer").style.display="flex";
+  document.getElementById("viewImg").src=src;
+}
 </script>
 
 </body>
 </html>
+
 
 
 
