@@ -1,11 +1,11 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Happy Birthday Aaria 🤍</title>
 
-  <!-- Google Model Viewer (mobile-safe 3D) -->
+  <!-- Model Viewer -->
   <script type="module"
     src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
   </script>
@@ -14,8 +14,8 @@
     body {
       margin: 0;
       height: 100vh;
-      background: #ffffff;
-      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #ffffff, #f0f0f0);
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -24,21 +24,28 @@
     }
 
     h1 {
-      font-size: 22px;
-      margin-bottom: 10px;
+      font-size: 24px;
+      margin: 12px 0 6px;
       color: #222;
+      font-weight: 500;
+    }
+
+    p {
+      margin: 0 0 10px;
+      color: #666;
+      font-size: 14px;
     }
 
     model-viewer {
       width: 100%;
-      height: 70vh;
+      height: 68vh;
     }
 
-    /* Tap-to-play screen */
+    /* Tap screen */
     #tapScreen {
       position: fixed;
       inset: 0;
-      background: rgba(255,255,255,0.95);
+      background: rgba(255,255,255,0.97);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -55,21 +62,23 @@
   <div id="tapScreen">Tap to start 🎵</div>
 
   <h1>Happy Birthday Aaria 🤍</h1>
+  <p>26 February ✨</p>
 
+  <!-- BEAUTIFUL 3D CAKE -->
   <model-viewer
     src="https://modelviewer.dev/shared-assets/models/Cake.glb"
     camera-controls
     disable-zoom
     disable-pan
     interaction-prompt="none"
-    environment-image="neutral"
-    shadow-intensity="1"
-    rotation-per-second="0deg"
-    camera-orbit="0deg 75deg 2.5m"
+    environment-image="https://modelviewer.dev/shared-assets/environments/neutral.hdr"
+    exposure="1.2"
+    shadow-intensity="1.4"
+    camera-orbit="0deg 70deg 2.3m"
     field-of-view="30deg">
   </model-viewer>
 
-  <!-- Background Music -->
+  <!-- MUSIC -->
   <audio id="music" loop>
     <source src="futile-devices.mp3" type="audio/mpeg">
   </audio>
